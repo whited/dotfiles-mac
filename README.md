@@ -24,7 +24,7 @@ todo
 
 # .gitignore
 
-The [`.gitignore`](.gitignore) file was generated using [gitignore.io](http://gitignore.io).
+The [`.gitignore`](.gitignore) file was (partly) generated using [gitignore.io](http://gitignore.io).
 
 # Tools and utilities
 
