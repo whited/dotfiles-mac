@@ -1,0 +1,35 @@
+[alias]
+	# Nice graph of git commit history
+	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+
+	# Aliases to make for less typing
+	lg = !"git lg1"
+	co = checkout
+	br = branch
+	st = status
+	unstage = reset HEAD --
+
+	# Diff or commit logs as they differ from the current branch's ancestor
+	oldest-ancestor = !bash -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
+	branchdiff = !bash -c \"git diff -b `git oldest-ancestor`..\"
+	branchlog = !bash -c \"git log `git oldest-ancestor`..\"
+	branchdifftool = !bash -c \"git difftool `git oldest-ancestor`..\"
+
+	branch-name = "!git rev-parse --abrev-ref HEAD"
+
+	po = !git push --set-upstream origin `git symbolic-ref --short HEAD`
+	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+
+[user]
+	# # See https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address#about-commit-email-addresses
+	# name = <Your Name>
+	# email = <Your Email>
+
+[push]
+	# allows "git push -u" and defaults to origin/<this-branch>
+	default = current
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
