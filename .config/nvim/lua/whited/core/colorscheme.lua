@@ -1,5 +1,11 @@
--- Default options
-require('nightfox').setup({
+-- set colorscheme to nightfly with protected call
+-- in case it isn't installed
+local loaded, nf_module = pcall(require, 'nightfox')
+if not loaded then
+  print("Colorscheme not found!") -- print error if colorscheme not installed
+  return
+end
+nf_module.setup({
   options = {
     -- Compiled file's destination location
     compile_path = vim.fn.stdpath("cache") .. "/nightfox",
@@ -34,5 +40,9 @@ require('nightfox').setup({
 })
 
 -- setup must be called before loading
-vim.cmd("colorscheme nightfox")
 
+local status, _ = pcall(vim.cmd, "colorscheme nightfox")
+if not status then
+    print("Colorscheme not found!") -- print error if colorscheme not installed
+    return
+end

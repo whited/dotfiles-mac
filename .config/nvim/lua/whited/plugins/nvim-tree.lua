@@ -1,7 +1,12 @@
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
-  return
+-- import nvim-tree plugin safely
+local setup, nvim_tree = pcall(require, "nvim-tree")
+if not setup then
+	return
 end
+
+-- recommended settings from nvim-tree documentation
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
@@ -66,4 +71,3 @@ nvim_tree.setup {
     },
   },
 }
-
