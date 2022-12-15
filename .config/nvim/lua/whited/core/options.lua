@@ -54,13 +54,13 @@ opt.fileencoding = "utf-8" -- the encoding written to a file
 opt.swapfile = false -- creates a swapfile
 opt.undofile = true -- enable persistent undo
 opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
- 
+
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 -- misc others
-opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
+opt.completeopt = { "menuone", "noselect", "noinsert" } -- mostly just for cmp
 opt.conceallevel = 0 -- so that `` is visible in markdown files
 
 opt.mouse = "a" -- allow the mouse to be used in neovim
@@ -69,7 +69,11 @@ opt.pumheight = 10 -- pop up menu height
 opt.ttimeoutlen = 100 -- time to wait for a mapped sequence to complete (in milliseconds)
 opt.updatetime = 300 -- faster completion (4000ms default)
 
-
 -- todo: What does this do?
--- vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 -- vim.cmd "set whichwrap+=<,>,[,],h,l
+
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])

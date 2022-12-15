@@ -92,7 +92,8 @@ return packer.startup(function(use)
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
-			require("nvim-treesitter.install").update({ with_sync = true })
+			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+			ts_update()
 		end,
 	})
 
@@ -104,6 +105,9 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
 	use("akinsho/toggleterm.nvim")
+
+	-- Word/back over words in CamelCase
+	use("chaoren/vim-wordmotion")
 
 	if packer_bootstrap then
 		require("packer").sync()

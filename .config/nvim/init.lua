@@ -21,11 +21,10 @@ require("whited.plugins.autopairs")
 require("whited.plugins.treesitter")
 require("whited.plugins.gitsigns")
 require("whited.plugins.toggleterm")
-
+require("whited.plugins.rust-tools")
 
 -- require "plugins.alpha"
 -- require "plugins.bufferline"
-
 
 -- require "plugins.comments"
 --require "plugins.toggleterm"
